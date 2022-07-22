@@ -1,0 +1,17 @@
+﻿@model NareshIT.Models.EmpDep
+
+    <table class="table table-bordered table-striped">
+        <tr>
+            <th>Dep Id</th>
+            <th>Dep Name</th>
+            <th>Description</th>
+        </tr>
+        @foreach (var item in Model.departmentInfo)
+        {
+            <tr>
+                <td>@item.depId</td>
+                <td>@item.depName</td>
+                <td>@item.depDescription</td>
+            </tr>
+        }
+    </table>

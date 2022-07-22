@@ -1,0 +1,99 @@
+﻿@model NareshIT.Models.tblEmployee
+@{
+    ViewBag.Title = "AddEmployee";
+}
+<link href="~/CSS/Style.css" rel="stylesheet" />
+
+@using (Html.BeginForm("AddEmployee", "Employee", new { id = 0 }, FormMethod.Post, new { @class = "form-class" }))
+{
+    @Html.AntiForgeryToken()
+    <div class="container">
+        <h4>Add Employee Information</h4>
+        <hr />
+        @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+        <div class="form-group">
+            <div class="col-lg-5">
+                <label for="empId">Emp Id</label>  @Html.ValidationMessageFor(x => x.empId, "", new { @class = "text-danger" })
+                @Html.TextBoxFor(x => x.empId, "", new { @class = "form-control" })
+            </div>
+        </div>
+        <div class="form-group">
+            <div class="col-lg-5">
+                <label for="empName">Emp Name</label>  @Html.ValidationMessageFor(x => x.empName, "", new { @class = "text-danger" })
+                @Html.TextBoxFor(x => x.empName, "", new { @class = "form-control" })
+            </div>
+        </div>
+        <div class="form-group">
+            <div class="col-lg-5">
+                <label for="empEmail">Email</label>  @Html.ValidationMessageFor(x => x.empEmail, "", new { @class = "text-danger" })
+                @Html.TextBoxFor(x => x.empEmail, "", new { @class = "form-control" })
+            </div>
+        </div>
+        <div class="form-group">
+            <div class="col-lg-5">
+                <label for="gender">Gender</label>  @Html.ValidationMessageFor(x => x.gender, "", new { @class = "text-danger" })
+
+                @Html.DropDownList("Gender",new List<SelectListItem>
+           {
+                    new SelectListItem{Text="Male",Value="1"},
+                    new SelectListItem{Text="Female",Value="2"}
+           },"Select Gender", new { @class = "form-control" })
+                @*@Html.TextBoxFor(x => x.gender, "", new { @class = "form-control" })*@
+            </div>
+        </div>
+        <div class="form-group">
+            <div class="col-lg-5">
+                <label for="contact">Contact</label>  @Html.ValidationMessageFor(x => x.contact, "", new { @class = "text-danger" })
+                @Html.TextBoxFor(x => x.contact, "", new { @class = "form-control" })
+            </div>
+        </div>
+        <div class="form-group">
+            <div class="col-lg-5">
+                <label for="city">City</label>  @Html.ValidationMessageFor(x => x.city, "", new { @class = "text-danger" })
+                @Html.TextBoxFor(x => x.city, "", new { @class = "form-control" })
+            </div>
+        </div>
+        <div class="form-group">
+            <div class="col-lg-5">
+                <label for="salary">Salary</label>  @Html.ValidationMessageFor(x => x.salary, "", new { @class = "text-danger" })
+                @Html.TextBoxFor(x => x.salary, "", new { @class = "form-control" })
+            </div>
+        </div>
+        <div class="form-group">
+            <div class="col-lg-5">
+                <label for="salary">Department</label>  @Html.ValidationMessageFor(x => x.departmentId, "", new { @class = "text-danger" })
+                @Html.DropDownList("Department",new List<SelectListItem>
+           {
+                    new SelectListItem{Text="IT",Value="1"},
+                    new SelectListItem{Text="HR",Value="2"},
+                    new SelectListItem{Text="Helpdesk",Value="3"},
+                    new SelectListItem{Text="Travel",Value="4"},
+                    new SelectListItem{Text="Finance",Value="5"}
+           },"Select Department", new { @class = "form-control" })
+                @*@Html.TextBoxFor(x => x.departmentId, "", new { @class = "form-control" })*@
+            </div>
+        </div>
+        <div class="form-group">
+            <div class="col-lg-5">
+                <input type="submit" class="registerbtn" value="Add Employee" />
+                @*<input type="submit" class="cancelBtn" value="Cancel" />*@
+            </div>
+        </div>
+    </div>
+    <div class="form-group">
+        <div class="col-lg-5">
+            @Html.ActionLink("Back to employees page", "GetEmployeeDetails")
+        </div>
+        @if (ViewBag.Message != null)
+        {
+            <div class="alert alert-success" role="alert">
+                @ViewBag.Message
+            </div>
+        }
+    </div>
+}
+
+
+<script src="~/Scripts/jquery-1.10.2.min.js"></script>
+<script src="~/Scripts/jquery.validate.min.js"></script>
+<script src="~/Scripts/jquery.validate.unobtrusive.min.js"></script>  

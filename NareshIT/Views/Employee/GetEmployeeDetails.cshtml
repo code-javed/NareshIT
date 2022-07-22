@@ -1,0 +1,53 @@
+﻿@model NareshIT.Models.EmpDep
+@{
+    ViewBag.Title = "GetEmployeeDetails";
+}
+<link href="~/CSS/Style.css" rel="stylesheet" />
+<h4>All Employees Details</h4>
+<hr />
+<table class="table table-bordered table-responsive table-striped">
+    <thead>
+        <tr>
+            <th>Emp Id</th>
+            <th>Emp Name</th>
+            <th>Email</th>
+            <th>Gender</th>
+            <th>Contact</th>
+            <th>Salary</th>
+            <th>City</th>
+            <th>Department</th>
+            <th>Action</th>
+        </tr>
+    </thead>
+    @foreach (var item in Model.employeeInfo)
+    {
+        <tr>
+            <td>@item.empId</td>
+            <td>@item.empName</td>
+            <td>@item.empEmail</td>
+            <td>@item.gender</td>
+            <td>@item.contact</td>
+            <td>@item.salary</td>
+            <td>@item.city</td>
+            <td>@item.departmentId</td>
+            <td>
+                @Html.ActionLink(" ", "Details", new { Id = item.empId }, new { @class = "glyphicon glyphicon-info-sign" })
+                @Html.ActionLink(" ", "EditEmployee", new { id = item.empId }, new { @class = "glyphicon glyphicon-edit" })
+                @Html.ActionLink(" ", "DeleteEmployee", new { id = item.empId }, new { onclick = "return confirm('Are you sure you want to delete this employee?');", @class = "glyphicon glyphicon-trash" })
+            </td>
+        </tr>
+    }
+</table>
+
+@*@Html.Partial("_partialViewToShowDepartment", Model)*@
+
+@using (Html.BeginForm("AddEmployee", "Employee", FormMethod.Post))
+{
+    <input type="submit" value="Add new employee" class="registerbtn" />
+}
+@if (ViewBag.Message != null)
+{
+    <div class="alert alert-success" role="alert">
+        @ViewBag.Message
+    </div>
+}
