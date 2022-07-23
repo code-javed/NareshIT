@@ -37,7 +37,7 @@ namespace NareshIT.Controllers
                 ed.tblEmployees.Add(employee);
                 ed.SaveChanges();
                 ViewBag.Message = "Employee record saved successfully!";
-                return Content("<script>alert('Employee record saved successfully!');</script>");
+                //return Content("<script>alert('Employee record saved successfully!');</script>");
             }
 
             var dep = ed.tblDepartments.ToList();
