@@ -29,7 +29,15 @@
             <td>@item.contact</td>
             <td>@item.salary</td>
             <td>@item.city</td>
-            <td>@item.departmentId</td>
+            <td>
+                @foreach (var dep in Model.departmentInfo)
+                {
+                    if (item.departmentId == dep.depId)
+                    {
+                        @dep.depName
+                    }
+                }
+            </td>
             <td>
                 @Html.ActionLink(" ", "Details", new { Id = item.empId }, new { @class = "glyphicon glyphicon-info-sign" })
                 @Html.ActionLink(" ", "EditEmployee", new { id = item.empId }, new { @class = "glyphicon glyphicon-edit" })
@@ -38,8 +46,6 @@
         </tr>
     }
 </table>
-
-@*@Html.Partial("_partialViewToShowDepartment", Model)*@
 
 @using (Html.BeginForm("AddEmployee", "Employee", FormMethod.Post))
 {

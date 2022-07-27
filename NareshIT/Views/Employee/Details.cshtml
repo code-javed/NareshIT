@@ -1,0 +1,48 @@
+﻿@model NareshIT.Models.tblEmployee
+@{
+    ViewBag.Title = "Employee Details";
+}
+<link href="~/CSS/Style.css" rel="stylesheet" />
+<h4>Employee Details</h4>
+<hr />
+
+@{
+    <table class="table table-responsive table-striped" style="width:50%;">
+        <tr>
+            <td><label>Employee Id:</label></td>
+            <td>@Model.empId</td>
+        </tr>
+        <tr>
+            <td><label>Name:</label></td>
+            <td>@Model.empName</td>
+        </tr>
+        <tr>
+            <td><label>Email Address:</label></td>
+            <td>@Model.empEmail</td>
+        </tr>
+        <tr>
+            <td><label>Gender:</label></td>
+            <td>@Model.gender</td>
+        </tr>
+        <tr>
+            <td><label>Contact:</label></td>
+            <td>@Model.contact</td>
+        </tr>
+        <tr>
+            <td><label>Salary:</label></td>
+            <td>@Model.salary</td>
+        </tr>
+        <tr>
+            <td><label>City:</label></td>
+            <td>@Model.city</td>
+        </tr>
+        <tr>
+            <td><label>Department:</label></td>
+            <td>@ViewBag.depName</td>
+        </tr>
+        <tr>
+            <td>@Html.ActionLink("Back to home page", "GetEmployeeDetails", "")</td>
+        </tr>
+    </table>
+
+}

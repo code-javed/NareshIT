@@ -32,4 +32,10 @@ namespace NareshIT.Models
     
         public virtual tblDepartment tblDepartment { get; set; }
     }
+    public enum Gender
+    {
+        Male,
+        Female,
+        Other
+    }
 }
