@@ -3,5 +3,40 @@
     ViewBag.Title = "AddDepartment";
 }
 
-<h2>AddDepartment</h2>
+<h4>AddDepartment</h4>
+<hr />
+<link href="~/CSS/Style.css" rel="stylesheet" />
+<table class="table table-bordered table-striped">
+    <tr>
+        <td><label>Department Id</label></td>
+        <td><input type="text" id="txtDepId" /></td>
+    </tr>
+    <tr>
+        <td><label>Department Name</label></td>
+        <td><input type="text" id="txtDepName" /></td>
+    </tr>
+    <tr>
+        <td></td>
+        <td><button id="btnSubmit">Save Department</button></td>
+    </tr>
+</table>
+<script src="~/Scripts/jquery-1.10.2.min.js"></script>
 
+<script>
+    $(document).ready(function () {
+        $("#btnSubmit").click(function () {
+            $.ajax({
+                url: "http://localhost:58883/Employee/AddDepartment",
+                type: "Post",
+                datatype: "Json",
+                data: {
+                    depId: $("#txtDepId").val(),
+                    depName: $("#txtDepName").val()
+                },
+                success: function (result) {
+                    alert('Department added successfully.');
+                }
+            })
+        })
+    })
+</script>

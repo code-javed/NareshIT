@@ -1,0 +1,38 @@
+﻿
+@{
+    ViewBag.Title = "Get Employee Details From Json";
+}
+
+
+<h4>Get Employee Details From Json</h4>
+
+<table id="employeeTable" class="table table-bordered table-responsive table-hover">
+    <thead>
+        <tr>
+            <th>Emp Id</th>
+            <th>Emp Name</th>
+            <th>Email</th>
+            <th>Gender</th>
+            <th>Contact</th>
+            <th>Salary</th>
+            <th>City</th>
+        </tr>
+    </thead>
+</table>
+<script src="~/Scripts/jquery-1.10.2.min.js"></script>
+
+<script>
+
+    $.ajax({
+        url: "http://localhost:58883/JsonStuff/GetEmployeeJson",
+        type: "Get",
+        datatype: "Json",
+        success: function (result) {
+            $.each(result, function (i, key) {
+                alert('Message');
+                $("#employeeTable tr:last").after("<tr><td>" + key.empId + "</td><td>" + key.empName + "</td><td>" + key.empEmail + "</td><td>" + key.gender + "</td><td>" + key.contact + "</td><td>" + key.salary + "</td><td>" + key.city + "</td></tr>");
+            })
+        }
+    })
+
+</script>

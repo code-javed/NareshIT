@@ -18,6 +18,7 @@ namespace NareshIT.Models
         public EmployeeDetails()
             : base("name=EmployeeDetails")
         {
+
         }
     
         protected override void OnModelCreating(DbModelBuilder modelBuilder)

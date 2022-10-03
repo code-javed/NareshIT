@@ -16,19 +16,10 @@ namespace NareshIT.Controllers
         }
 
         public JsonResult GetEmployeeJson()
-
         {
             EmployeeDetails ed = new EmployeeDetails();
             ed.Configuration.ProxyCreationEnabled = false;
             var emp = ed.tblEmployees.ToList();
-
-            //ed.Configuration.ProxyCreationEnabled = false;
-            //var dep = ed.tblDepartments.ToList();
-
-            //EmpDep empDep = new EmpDep();
-            //empDep.employeeInfo = emp;
-            //empDep.departmentInfo = dep;
-
 
             return Json(emp, JsonRequestBehavior.AllowGet);
         }

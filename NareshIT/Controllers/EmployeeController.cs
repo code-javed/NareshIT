@@ -17,6 +17,7 @@ namespace NareshIT.Controllers
         {
             return View();
         }
+
         [HttpGet]
         public ActionResult GetEmployeeDetails()
         {
@@ -51,6 +52,7 @@ namespace NareshIT.Controllers
                 {
                     ed.tblEmployees.Add(employee);
                     ed.SaveChanges();
+                    
                     return RedirectToAction("GetEmployeeDetails");
                     //ViewBag.Message = "Employee record saved successfully!";
                     //return Content("<script>alert('Employee record saved successfully!');</script>");
@@ -64,11 +66,24 @@ namespace NareshIT.Controllers
 
             return View();
         }
-        [HttpPost]
-        public ActionResult AddDepartment(tblDepartment department)
+
+
+        public ActionResult AddDepartment()
         {
             return View();
         }
+
+        [HttpPost]
+        public ActionResult AddDepartment(tblDepartment department)
+        {
+
+            EmployeeDetails ed = new EmployeeDetails();
+            ed.tblDepartments.Add(department);
+            ed.SaveChanges();
+
+            return View();
+        }
+
         public ActionResult DeleteEmployee(int id)
         {
             EmployeeDetails ed = new EmployeeDetails();

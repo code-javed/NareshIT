@@ -7,96 +7,106 @@
 @using (Html.BeginForm("AddEmployee", "Employee", new { id = 0 }, FormMethod.Post, new { @class = "form-class" }))
 {
     @Html.AntiForgeryToken()
-<div class="container">
-    @{
-        if (Model != null)
-        {
-            <h4>Update Employee Information</h4>
-        }
-        else
-        {
-            <h4>Add Employee Information</h4>
-        }
-    }
-    <hr />
-    @Html.ValidationSummary(true, "", new { @class = "text-danger" })
-    <div class="form-group">
-        <div class="col-lg-5">
-            <label for="empId">Emp Id</label>  @Html.ValidationMessageFor(x => x.empId, "", new { @class = "text-danger" })
-            @if (Model != null && Model.empId > 0)
+    <div class="container">
+        @{
+            if (Model != null)
             {
-                @Html.TextBoxFor(x => x.empId, "", new { @class = "form-control", disabled = "disabled" })
+                <h4>Update Employee Information</h4>
             }
             else
             {
-                @Html.TextBoxFor(x => x.empId, "", new { @class = "form-control" })
+                <h4>Add Employee Information</h4>
             }
-            @Html.HiddenFor(x => x.empId)
+        }
+        <hr />
+        @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+        <div class="form-group">
+            <div class="col-lg-5">
+                <label for="empId">Emp Id</label>  @Html.ValidationMessageFor(x => x.empId, "", new { @class = "text-danger" })
+                @if (Model != null && Model.empId > 0)
+                {
+                    @Html.TextBoxFor(x => x.empId, "", new { @class = "form-control", disabled = "disabled" })
+                }
+                else
+                {
+                    @Html.TextBoxFor(x => x.empId, "", new { @class = "form-control" })
+                }
+                @Html.HiddenFor(x => x.empId)
+            </div>
         </div>
-    </div>
-    <div class="form-group">
-        <div class="col-lg-5">
-            <label for="empName">Emp Name</label>  @Html.ValidationMessageFor(x => x.empName, "", new { @class = "text-danger" })
-            @Html.TextBoxFor(x => x.empName, "", new { @class = "form-control" })
+        <div class="form-group">
+            <div class="col-lg-5">
+                <label for="empName">Emp Name</label>  @Html.ValidationMessageFor(x => x.empName, "", new { @class = "text-danger" })
+                @Html.TextBoxFor(x => x.empName, "", new { @class = "form-control" })
+            </div>
         </div>
-    </div>
-    <div class="form-group">
-        <div class="col-lg-5">
-            <label for="empEmail">Email</label>  @Html.ValidationMessageFor(x => x.empEmail, "", new { @class = "text-danger" })
-            @Html.TextBoxFor(x => x.empEmail, "", new { @class = "form-control" })
+        <div class="form-group">
+            <div class="col-lg-5">
+                <label for="empEmail">Email</label>  @Html.ValidationMessageFor(x => x.empEmail, "", new { @class = "text-danger" })
+                @Html.TextBoxFor(x => x.empEmail, "", new { @class = "form-control" })
+            </div>
         </div>
-    </div>
-    <div class="form-group">
-        <div class="col-lg-5">
-            <label for="gender">Gender</label>  @Html.ValidationMessageFor(x => x.gender, "", new { @class = "text-danger" })
+        <div class="form-group">
+            <div class="col-lg-5">
+                <label for="gender">Gender</label>  @Html.ValidationMessageFor(x => x.gender, "", new { @class = "text-danger" })
 
-            @Html.DropDownList("gender", new List<SelectListItem>
-       {
-                new SelectListItem{Text="Male",Value="Male"},
-                new SelectListItem{Text="Female",Value="Female"}
-       },"Select Gender", new { @class = "form-control" })
-            @*@Html.TextBoxFor(x => x.gender, "", new { @class = "form-control" })*@
+                @Html.DropDownList("gender", new List<SelectListItem>
+           {
+                    new SelectListItem{Text="Male",Value="Male"},
+                    new SelectListItem{Text="Female",Value="Female"}
+           },"Select Gender", new { @class = "form-control" })
+                @*@Html.TextBoxFor(x => x.gender, "", new { @class = "form-control" })*@
+            </div>
+        </div>
+        <div class="form-group">
+            <div class="col-lg-5">
+                <label for="contact">Contact</label>  @Html.ValidationMessageFor(x => x.contact, "", new { @class = "text-danger" })
+                @Html.TextBoxFor(x => x.contact, "", new { @class = "form-control" })
+            </div>
+        </div>
+        <div class="form-group">
+            <div class="col-lg-5">
+                <label for="city">City</label>  @Html.ValidationMessageFor(x => x.city, "", new { @class = "text-danger" })
+                @Html.TextBoxFor(x => x.city, "", new { @class = "form-control" })
+            </div>
+        </div>
+        <div class="form-group">
+            <div class="col-lg-5">
+                <label for="salary">Salary</label>  @Html.ValidationMessageFor(x => x.salary, "", new { @class = "text-danger" })
+                @Html.TextBoxFor(x => x.salary, "", new { @class = "form-control" })
+            </div>
+        </div>
+        <div class="form-group">
+            <div class="col-lg-5">
+                <label for="departmentId">Department</label>  @Html.ValidationMessageFor(x => x.departmentId, "", new { @class = "text-danger" })
+                @Html.DropDownList("departmentId", new List<SelectListItem>
+           {
+                    new SelectListItem{Text="IT",Value="1"},
+                    new SelectListItem{Text="HR",Value="2"},
+                    new SelectListItem{Text="Helpdesk",Value="3"},
+                    new SelectListItem{Text="Travel",Value="4"},
+                    new SelectListItem{Text="Finance",Value="5"}
+           },"Select Department", new { @class = "form-control" })
+                @*@Html.TextBoxFor(x => x.departmentId, "", new { @class = "form-control" })*@
+            </div>
+        </div>
+        <div class="form-group">
+            <div class="col-lg-5">
+                @{
+                    if (Model != null)
+                    {
+                        <input type="submit" class="registerbtn" value="Update Employee" />
+                    }
+                    else
+                    {
+                        <input type="submit" class="registerbtn" value="Add Employee" />
+                    }
+                }
+
+                @*<input type="submit" class="cancelBtn" value="Cancel" />*@
+            </div>
         </div>
     </div>
-    <div class="form-group">
-        <div class="col-lg-5">
-            <label for="contact">Contact</label>  @Html.ValidationMessageFor(x => x.contact, "", new { @class = "text-danger" })
-            @Html.TextBoxFor(x => x.contact, "", new { @class = "form-control" })
-        </div>
-    </div>
-    <div class="form-group">
-        <div class="col-lg-5">
-            <label for="city">City</label>  @Html.ValidationMessageFor(x => x.city, "", new { @class = "text-danger" })
-            @Html.TextBoxFor(x => x.city, "", new { @class = "form-control" })
-        </div>
-    </div>
-    <div class="form-group">
-        <div class="col-lg-5">
-            <label for="salary">Salary</label>  @Html.ValidationMessageFor(x => x.salary, "", new { @class = "text-danger" })
-            @Html.TextBoxFor(x => x.salary, "", new { @class = "form-control" })
-        </div>
-    </div>
-    <div class="form-group">
-        <div class="col-lg-5">
-            <label for="departmentId">Department</label>  @Html.ValidationMessageFor(x => x.departmentId, "", new { @class = "text-danger" })
-            @Html.DropDownList("departmentId", new List<SelectListItem>
-       {
-                new SelectListItem{Text="IT",Value="1"},
-                new SelectListItem{Text="HR",Value="2"},
-                new SelectListItem{Text="Helpdesk",Value="3"},
-                new SelectListItem{Text="Travel",Value="4"},
-                new SelectListItem{Text="Finance",Value="5"}
-       },"Select Department", new { @class = "form-control" })
-            @*@Html.TextBoxFor(x => x.departmentId, "", new { @class = "form-control" })*@
-        </div>
-    </div>
-    <div class="form-group">
-        <div class="col-lg-5">
-            <input type="submit" class="registerbtn" value="Add Employee" />
-            @*<input type="submit" class="cancelBtn" value="Cancel" />*@
-        </div>
-    </div>
-</div>
     <div class="form-group">
         <div class="col-lg-5">
             @Html.ActionLink("Back to employees page", "GetEmployeeDetails")

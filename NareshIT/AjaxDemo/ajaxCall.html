@@ -1,0 +1,101 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <title>Ajax Call</title>
+    <script src="../Scripts/jquery-1.10.2.min.js"></script>
+
+</head>
+
+<body>
+    <div id="div1"><h4>AJAX text</h4></div>
+    <div id="result"></div>
+    <button id="btnClick">Call load method</button>
+    <button id="btnClick2">Call Get method</button>
+</body>
+</html>
+
+<script>
+    $(document).ready(function () {
+        $("#btnClick33").click(function () {
+            //$("#div1").load("ajaxDemo.html #hh");
+
+            $("#div1").load("ajaxDemo.html", function (responseTxt, statusTxt, xhr) {
+                if (statusTxt == "success")
+                    alert("External content loaded successfully!");
+                if (statusTxt == "error")
+                    alert("Error: " + xhr.status + ": " + xhr.statusText);
+            });
+        });
+    });
+
+    $("#btnClick2").click(function () {
+        $.get("ajaxDemo.html", function (data, status) {
+            alert("Data: " + data + "\nStatus: " + status);
+        });
+    });
+    $(document).ready(function () {
+        $("#btnClick").click(function () {
+            $.ajax({
+                url: "ajaxDemo.html",
+                type: "Get",
+                dataype: "html",
+                async: true,
+                success: function (result) {
+                    alert("data" + result);
+                }
+            });
+        });
+    })
+
+
+
+</script>
+
+<script>
+    $(document).ready(function () {
+        //function will be called on button click having id btnsave
+        $("#btnSubmit").click(function () {
+            $.ajax(
+                {
+                    url: "http://localhost:58883/Employee/AddDepartment", // Controller/View
+                    type: "POST", //HTTP POST Method
+                    data: { //Passing data
+                        depId: $("#txtDepId").val(), //Reading text box values using Jquery
+                        depName: $("#txtDepName").val(),
+                    },
+                    success: function () {
+                        alert('Department added succesffully.');
+                    }
+                });
+        });
+    });
+</script>  
+
+<script>
+    $.ajax({
+        url: "http://localhost:58883/JsonStuff/GetEmployeeJson",
+        type: "Get",
+        dataType: "Json",
+        success: function (result) {
+            $.each(result, function (i, key) {
+                $('#employeeTable tr:last').after("<tr><td>" + key.empId + "</td><td>" + key.empName + "</td><td>" + key.empEmail + "</td><td>" + key.gender + "</td><td>" + key.contact + "</td><td>" + key.salary + "</td><td>" + key.city + "</td></tr>");
+            })
+        }
+    })
+</script>
+
+
+
+<script>
+    $.ajax({
+        url: "http://localhost:58883/JsonStuff/GetEmployeeJson",
+        type: "Get",
+        dataType: "Json",
+        success: function (result) {
+            $.each(result, function (i, key) {
+                $('#employeeTable tr:last').after("<tr><td>" + key.empId + "</td><td>" + key.empName + "</td><td>" + key.empEmail + "</td><td>" + key.gender + "</td><td>" + key.contact + "</td><td>" + key.salary + "</td><td>" + key.city + "</td><td>" + key.departmentId + "</td><td><label>Edit</label></td></tr>");
+            })
+        }
+    })
+</script>
